@@ -33,17 +33,24 @@ option.add_experimental_option('useAutomationExtension', False)
 
 if __name__ == "__main__":
 
-    for index,epoch in range(epochs):
-        # 通过API链接爬取IP，这里根据自己的情况进行修改
+    # 创建一个列表来存储已经选择的 IP 地址
+    selected_ips = []
+
+    # 迭代 range(epochs)，同时获取索引和对应的值
+    # TODO 去除index
+    for index, epoch in enumerate(range(epochs)):
+        # 通过 API 链接爬取 IP，这里根据自己的情况进行修改
         iptext = requests.get(api).text
-        # TODO 取其中第一个或者按顺序取
-        #ip = "218.95.39.19:13552"
         # 按行拆分文本
-        # TODO
         ips = iptext.strip().splitlines()
 
-        # 修改IP,ip池ip数量要大于份数
-        option.add_argument('--proxy-server={}'.format(ips[index]))
+        # 从剩余的 IP 地址中随机选择一个 IP
+        ip = random.choice([ip for ip in ips if ip not in selected_ips])
+        
+        # 将选择的 IP 添加到已选择的列表中
+        selected_ips.append(ip)
+        
+        option.add_argument('--proxy-server={}'.format(ip))
 
         driver = webdriver.Edge(options=option)
 
