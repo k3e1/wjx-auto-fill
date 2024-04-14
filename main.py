@@ -81,36 +81,36 @@ if __name__ == "__main__":
                 flag = question.get_attribute("type")
                 if flag == '2':
                     index = utils.fill_blank(driver, i, answerList, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '3':
                     index = utils.single_choice(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '4':
                     index = utils.multi_choice(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '5':
                     index = utils.single_scale(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '6':
                     xpath = '//*[@id="div{}"]/div[1]/div[2]/span'.format(i)
                     if driver.find_element(By.XPATH, xpath).text.find("【") != -1:
                         index = utils.multi_matrix_scale(driver, i, prob, index, num)
-                        utils.pause_random_time
+                        utils.pause_random_time()
                     else:
                         index = utils.single_matrix_scale(driver, i, prob, index, num)
-                        utils.pause_random_time
+                        utils.pause_random_time()
                 elif flag == '7':
                     index = utils.select(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '8':
                     index = utils.single_slide(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '11':
                     index = utils.sort(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 elif flag == '12':
                     index = utils.multi_slide(driver, i, prob, index)
-                    utils.pause_random_time
+                    utils.pause_random_time()
                 else:
                     print("没有该题型")
                     sys.exit(0)

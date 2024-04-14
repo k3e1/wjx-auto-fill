@@ -1,7 +1,7 @@
 # wjx的url
 url = ""
 # 问卷星份数
-epochs = 10
+epochs = 3
 # 题项比例，确保选项数量和数组长度一致,百分比选项
 prob = {
     1: [1, 1],
@@ -22,4 +22,4 @@ UA = ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
 
 # 定义答题停顿时间的范围
 min_pause_time = 1.0  # 最小停顿时间（秒）
-max_pause_time = 4.0  # 最大停顿时间（秒）
+max_pause_time = 5.0  # 最大停顿时间（秒）
