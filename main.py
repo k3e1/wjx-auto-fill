@@ -30,16 +30,23 @@ option = webdriver.EdgeOptions()
 option.add_experimental_option('excludeSwitches', ['enable-automation'])
 option.add_experimental_option('useAutomationExtension', False)
 
+
 if __name__ == "__main__":
 
-    for epoch in range(epochs):
-        
+    for index,epoch in range(epochs):
         # 通过API链接爬取IP，这里根据自己的情况进行修改
-        ip = requests.get(api).text
-        # 修改IP
-        option.add_argument('--proxy-server={}'.format(ip))
+        iptext = requests.get(api).text
+        # TODO 取其中第一个或者按顺序取
+        #ip = "218.95.39.19:13552"
+        # 按行拆分文本
+        # TODO
+        ips = iptext.strip().splitlines()
+
+        # 修改IP,ip池ip数量要大于份数
+        option.add_argument('--proxy-server={}'.format(ips[index]))
 
         driver = webdriver.Edge(options=option)
+
         # 修改User-Agent
         num = random.randint(0, 2)
         driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": UA[num]})
