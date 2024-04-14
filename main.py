@@ -45,7 +45,8 @@ if __name__ == "__main__":
     selected_ips = set()
     # 失败次数计数
     failed_count = 0
-
+    # 确保 driver 在外部初始化为 None
+    driver = None
     # 迭代 range(epochs)
     for epoch in range(epochs):
         try:
@@ -152,8 +153,14 @@ if __name__ == "__main__":
             print(f"任务在第 {epoch + 1} 轮失败: {e}")
             failed_count += 1
         finally:
-            # 确保在每次迭代后都关闭 driver
-            driver.quit()
+            # 使用 try-except 块确保 driver.quit() 的异常被捕获
+            try:
+                # 确保在每次迭代后都关闭 driver
+                driver.quit()
+            except Exception as e:
+                # 捕获异常并输出错误信息
+                print(f"Error during driver.quit(): {e}")
+            # 继续执行其他后续代码
             print(f"已完成 {epoch + 1} 份")
         
     print("全部完成{}份填写".format(epochs))
