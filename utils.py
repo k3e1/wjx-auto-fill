@@ -3,6 +3,14 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 import numpy
+import config
+
+# 在每次答题后使用随机停顿时间
+def pause_random_time():
+    # 生成随机的停顿时间
+    pause_time = random.uniform(config.min_pause_time, config.max_pause_time)
+    # 暂停程序
+    time.sleep(pause_time)
 
 # 选取答案
 def select_answer(answerList):
